@@ -13,7 +13,6 @@ class BurgerPane extends React.Component {
                     margin: "15px",
                     textAlign: "center"}}
       >
-        
           {this.props.usedIngredients.map((usedIngredient, i) => 
             <h4 key={i}
             style={{margin: "10px",

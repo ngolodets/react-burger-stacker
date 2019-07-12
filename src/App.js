@@ -22,10 +22,10 @@ class App extends React.Component {
       ],
       stack: []
     }
-    //this.handleIngredient = this.handleIngredient.bind(this);
     this.onAddIngredient = this.onAddIngredient.bind(this);
     this.onClearStack = this.onClearStack.bind(this);
   }
+
   onClearStack(e) {
     e.preventDefault();
     this.setState({
@@ -33,7 +33,6 @@ class App extends React.Component {
     })
   }
   
- 
   onAddIngredient(e, i) {
     e.preventDefault();
     const stackCopy = Array.from(this.state.stack);
@@ -42,18 +41,9 @@ class App extends React.Component {
       stack: stackCopy
     })
   }
-  // addIngredient(e) {
-  //   e.preventDefault();
-  //   var ingredients = Array.from(this.state.ingredientName);
-  //   var usedIngredients = stackName.unshift(this.state.ingredients);
-  //   this.setState({
-  //     ingredients,
-  //     usedIngredients
-  //   })
-  // }
+
   render() {
     const listCopy = Array.from(this.state.ingredients);
-    //const colorCopy = Array.from(this.state.ingredientColor);
     const stackCopy = Array.from(this.state.stack);
   
     return (
