@@ -8,18 +8,21 @@ class BurgerPane extends React.Component {
                     backgroundColor: "lightgray", 
                     border: "1px solid black", 
                     width: "350px", 
-                    height: "350px", 
+                    height: "420px", 
                     float: "left", 
                     margin: "15px",
                     textAlign: "center"}}
       >
-        <ul style={{listStyle: "none"}}>
+        
           {this.props.usedIngredients.map((usedIngredient, i) => 
-            <li key={i}>{usedIngredient}
-            </li>
+            <h4 key={i}
+            style={{margin: "10px",
+                    textAlign: "center",
+                    backgroundColor: usedIngredient.color}}>
+              {usedIngredient.name}
+            </h4>
             )
           }
-        </ul>
         <div style={{width: "300px", 
                       height: "5px", 
                       backgroundColor: "brown", 
@@ -31,7 +34,8 @@ class BurgerPane extends React.Component {
                     textAlign: "center"}}
         >Burger Stacking Area
         </h2>
-        <button type="submit"
+        <button type="button"
+                onClick={this.props.clearStack}
         >CLEAR</button>
       </div>
     </>

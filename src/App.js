@@ -6,46 +6,60 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ingredientName: [
-        'Kaiser Bun',
-        'Sesame Bun',
-        'Gluten Free Bun',
-        'Lettuce Wrap',
-        'Beef Patty',
-        'Soy Patty',
-        'Black Bean Patty',
-        'Chicken Patty',
-        'Lettuce',
-        'Tomato',
-        'Bacon',
-        'Onion'
+      ingredients: [
+        {name: 'Kaiser Bun', color: 'saddlebrown'},
+        {name: 'Sesame Bun', color: 'sandybrown'},
+        {name: 'Gluten Free Bun', color: 'peru'},
+        {name: 'Lettuce Wrap', color: 'olivedrab'},
+        {name: 'Beef Patty', color: '#3F250B'},
+        {name: 'Soy Patty', color: '#3F250B'},
+        {name: 'Black Bean Patty', color: '#3F250B'},
+        {name: 'Chicken Patty', color: 'burlywood'},
+        {name: 'Lettuce', color: 'lawngreen'},
+        {name: 'Tomato', color: 'tomato'},
+        {name: 'Bacon', color: 'maroon'},
+        {name: 'Onion', color: 'lightyellow'}
       ],
-      ingredientColor: [
-        'saddlebrown',
-        'sandybrown',
-        'peru',
-        'olivedrab',
-        '#3F250B',
-        '#3F250B',
-        '#3F250B',
-        'burlywood',
-        'lawngreen',
-        'tomato',
-        'maroon',
-        'lightyellow'
-      ],
-      stackName: ["sesame bun", "bacon", "tomato", "avocado"],
-      stackColor: []
+      stack: []
     }
+    //this.handleIngredient = this.handleIngredient.bind(this);
+    this.onAddIngredient = this.onAddIngredient.bind(this);
+    this.onClearStack = this.onClearStack.bind(this);
   }
+  onClearStack(e) {
+    e.preventDefault();
+    this.setState({
+      stack: []
+    })
+  }
+  
+ 
+  onAddIngredient(e, i) {
+    e.preventDefault();
+    const stackCopy = Array.from(this.state.stack);
+    stackCopy.unshift(this.state.ingredients[i]);
+    this.setState({
+      stack: stackCopy
+    })
+  }
+  // addIngredient(e) {
+  //   e.preventDefault();
+  //   var ingredients = Array.from(this.state.ingredientName);
+  //   var usedIngredients = stackName.unshift(this.state.ingredients);
+  //   this.setState({
+  //     ingredients,
+  //     usedIngredients
+  //   })
+  // }
   render() {
-    const listCopy = Array.from(this.state.ingredientName);
-    const colorCopy = Array.from(this.state.ingredientColor);
-    const stackCopy = Array.from(this.state.stackName);
+    const listCopy = Array.from(this.state.ingredients);
+    //const colorCopy = Array.from(this.state.ingredientColor);
+    const stackCopy = Array.from(this.state.stack);
+  
     return (
       <>
-        <IngredientList ingredients={listCopy} colors={colorCopy} />
-        <BurgerPane usedIngredients={stackCopy} />
+        <IngredientList ingredients={listCopy} addIngredient={this.onAddIngredient} />
+        <BurgerPane usedIngredients={stackCopy} clearStack={this.onClearStack} />
       </>
     );
   }

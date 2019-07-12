@@ -7,7 +7,7 @@ class IngredientList extends React.Component {
                     backgroundColor: "lightgray", 
                     border: "1px solid black", 
                     width: "350px", 
-                    height: "350px", 
+                    height: "420px", 
                     margin: "15px", 
                     marginLeft: "400px", 
                     float: "left"}}
@@ -17,14 +17,16 @@ class IngredientList extends React.Component {
                     textAlign: "center"}}
         >Available Ingredients:
         </h2>
-        <ul style={{listStyle: "none"}}>
-          {this.props.ingredients.map((ingredient, i) => 
-            <li key={i}>{ingredient}
-                          <button type="submit">ADD >></button>
-            </li>
-            )
-          } 
-        </ul>
+        {this.props.ingredients.map((ingredient, i) => 
+          <h4 key={i}
+              style={{margin: "10px",
+                      textAlign: "center"}}
+          >{ingredient.name}
+            <button type="button"
+                    onClick={(e) => this.props.addIngredient(e, i)}>ADD >></button>
+          </h4>
+          )
+        }
       </div> 
     )
   }
